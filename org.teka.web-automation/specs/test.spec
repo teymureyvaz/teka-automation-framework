@@ -2,5 +2,9 @@ Specification Heading
 ======================
 
 
-## test scenairo
-* Open "chrome" and go to "http://google.com"
+## Scenario: Open and click test
+* Open browser and go to "https://example.com"
+* Click element ".example-button"
+
+
+// mvn gauge:execute -Dspecs="specs"

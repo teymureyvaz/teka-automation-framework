@@ -1,27 +1,20 @@
 package base;
 
 import driver.DriverManager;
+import com.thoughtworks.gauge.AfterScenario;
+import com.thoughtworks.gauge.BeforeScenario;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 
 public class BaseBrowser {
 
-    protected WebDriver driver;
-
-    @BeforeMethod
+    @BeforeScenario
     public void setup() {
-        // Get the browser name from system property or use chrome by default
-        String browser = System.getProperty("browser", "chrome");
-
-        // Initialize the driver using Singleton DriverManager
-        DriverManager.getInstance().initializeDriver(browser);
-        driver = DriverManager.getInstance().getDriver();
+        WebDriver driver = DriverManager.getDriver();  // Ensure this is called before each test scenario
+        System.out.println("Driver setup complete!");  // Debugging
     }
 
-    @AfterMethod
-    public void tearDown() {
-        // Quit the driver after each test method
-        DriverManager.getInstance().quitDriver();
+    @AfterScenario
+    public void teardown() {
+        DriverManager.quitDriver();
     }
 }
